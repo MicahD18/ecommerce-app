@@ -21,13 +21,25 @@ const App = () => {
     setPrice(price);
   };
 
+  const handleCounter = (counter) => {
+    setAdd(add + counter);
+  };
+
   return (
     <BrowserRouter>
       <div className="App">
         <Navbar itemAmount={add} />
         <Routes>
           <Route path="/" element={<Products addToCart={handleData} />} />
-          <Route path="/viewProduct" element={<ViewProductPage />} />
+          <Route
+            path="/viewProduct"
+            element={
+              <ViewProductPage
+                addToCart={handleData}
+                addTotal={handleCounter}
+              />
+            }
+          />
           <Route
             path="/cart"
             element={<CartPage name={name} price={price} />}

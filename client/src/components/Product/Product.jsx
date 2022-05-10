@@ -40,6 +40,7 @@ const Product = ({ data, addToCart }) => {
                 image: `${data.image}`,
                 name: `${data.name}`,
                 price: `${data.price}`,
+                about: `${data.about}`
               },
             }}
             className={button}
@@ -64,6 +65,7 @@ const Product = ({ data, addToCart }) => {
 const useStyles = makeStyles(() => ({
   card: {
     marginTop: "25px",
+    paddingBottom: "25px"
   },
   media: {
     height: 0,
@@ -89,8 +91,9 @@ const useStyles = makeStyles(() => ({
     borderStyle: "none",
     fontSize: "18px",
     padding: "15px",
+    borderRadius: "15px",
     "&:hover": {
-      backgroundColor: "#909090",
+      backgroundColor: "#EB565A",
       color: "white",
     },
   },
