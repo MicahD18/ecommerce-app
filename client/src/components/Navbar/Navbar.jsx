@@ -1,9 +1,70 @@
-import React from 'react'
+import React from "react";
 
-const Navbar = () => {
+import {
+  Container,
+  IconButton,
+  Badge,
+  Typography,
+  makeStyles,
+} from "@material-ui/core";
+
+import { ShoppingCart } from "@material-ui/icons";
+import logo from "../../assets/headphones-icon.png";
+
+import "./Navbar.css";
+
+import { Link } from "react-router-dom";
+
+const Navbar = ({itemAmount}) => {
+  const { container, logoHeader, cartIcon } = useStyles();
+
   return (
-    <div>Navbar</div>
-  )
-}
+    <Container className={container}>
+      <Link to="/" className="header">
+        <div className={logoHeader}>
+          <img src={logo} height="40px" />
+          <h1 className="title">Audio Center</h1>
+        </div>
+      </Link>
 
-export default Navbar
+      <Link to="/cart" className="header">
+        <div className={cartIcon}>
+          <Badge color="secondary" badgeContent={itemAmount}>
+            <ShoppingCart />
+          </Badge>
+
+          <Typography className="header">Cart</Typography>
+        </div>
+      </Link>
+    </Container>
+  );
+};
+
+const useStyles = makeStyles(() => ({
+  container: {
+    backgroundColor: "black",
+    color: "white",
+    height: "75px",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: "15px",
+  },
+  logoHeader: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "15px",
+  },
+  cartIcon: {
+    cursor: "pointer",
+    transition: "0.5s",
+    padding: "5px",
+    height: "25px",
+    borderRadius: "25px",
+    "&:hover": {
+      backgroundColor: "#EB565A",
+    },
+  },
+}));
+
+export default Navbar;

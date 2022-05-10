@@ -1,0 +1,39 @@
+.container {
+    background-color: black;
+    color: white;
+    height: 75px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+
+.header {
+    font-weight: 200;
+    text-decoration: none;
+    color: white;
+}
+
+.title {
+    font-weight: 200;
+    text-decoration: none;
+    color: white;
+    margin-top: 5px;
+}
+  
+.logo-header {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.cart-icon {
+    cursor: pointer;
+    transition: 0.5s;
+    padding: 5px;
+    height: 25px;
+    border-radius: 25px;
+}
+.cart-icon:hover {
+    background-color: "#EB565A",
+}
