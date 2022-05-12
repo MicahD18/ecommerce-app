@@ -13,6 +13,8 @@ const App = () => {
   const [add, setAdd] = useState(0);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(undefined);
+  const [cartArray, setCartArray] = useState([]);
+  const [clickCount, setClickCount] = useState(0);
 
   const handleData = (name, price) => {
     setAdd(add + 1);
@@ -25,24 +27,44 @@ const App = () => {
     setAdd(add + counter);
   };
 
+  const cartCallback = (name, price, count) => {
+    count = name;
+    cartArray.push(count, `$${price}`);
+    console.log(name);
+    setCartArray(cartArray);
+    setClickCount(clickCount + 1);
+    console.log(cartArray);
+  };
+
+  // add empty array
+
   return (
     <BrowserRouter>
       <div className="App">
         <Navbar itemAmount={add} />
         <Routes>
-          <Route path="/" element={<Products addToCart={handleData} />} />
+          <Route
+            path="/"
+            element={
+              <Products addToCart={handleData} cartCallback={cartCallback} />
+            }
+          />
           <Route
             path="/viewProduct"
             element={
               <ViewProductPage
-                addToCart={handleData}
                 addTotal={handleCounter}
+                addToCart={handleData}
+                cartCallback={cartCallback}
               />
             }
           />
           <Route
             path="/cart"
-            element={<CartPage name={name} price={price} />}
+            // pass empty array
+            element={
+              <CartPage name={name} price={price} cartArray={cartArray} />
+            }
           />
         </Routes>
       </div>

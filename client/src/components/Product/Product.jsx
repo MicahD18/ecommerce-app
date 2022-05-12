@@ -13,7 +13,7 @@ import {
 
 import "./Product.css";
 
-const Product = ({ data, addToCart }) => {
+const Product = ({ data, addToCart, cartCallback }) => {
   const { card, media, productInfo, buttons, button } = useStyles();
 
   return (
@@ -52,6 +52,7 @@ const Product = ({ data, addToCart }) => {
             id="add"
             onClick={() => {
               addToCart(data.name, data.price);
+              cartCallback(data.name, data.price);
             }}
           >
             Add to Cart

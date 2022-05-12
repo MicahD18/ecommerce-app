@@ -11,29 +11,40 @@ import {
 
 import { Link } from "react-router-dom";
 
-const CartPage = ({ name, price }) => {
+const CartPage = ({ name, price, cartArray }) => {
   console.log(price);
+
+  let allItems = cartArray.map((item) => {
+    console.log(item.toString());
+
+    return (
+      <div>
+        <Card className={card}>
+          <p>{item}</p>
+        </Card>
+      </div>
+    );
+  });
 
   const { card } = useStyles();
 
-  {if (name === "" && price === undefined) {
-    return (
-      <div>
-        <h1>Your Cart</h1>
-        <p>
-        No items are in your cart. <Link to="/">Start adding some!</Link>
-      </p>
-      </div>
-    )
-  }}
+  {
+    if (name === "" && price === undefined) {
+      return (
+        <div>
+          <h1>Your Cart</h1>
+          <p>
+            No items are in your cart. <Link to="/">Start adding some!</Link>
+          </p>
+        </div>
+      );
+    }
+  }
 
   return (
     <div>
       <h1>Your Cart</h1>
-      <Card className={card}>
-        <h3>{name}</h3>
-        <h3>${price}</h3>
-      </Card>
+      {allItems}
     </div>
   );
 };
@@ -47,7 +58,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingLeft: "15px",
-    paddingRight: "15px"
+    paddingRight: "15px",
   },
   media: {
     width: "100%",
