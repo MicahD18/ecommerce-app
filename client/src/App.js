@@ -44,11 +44,19 @@ const App = () => {
     setClickCount(clickCount + 1);
     console.log(cartArray);
 
-    for (let i = 0; i < cartArray.length; i++) {
-      console.log(cartArray[i].price);
-      setSum(sum += cartArray[i].price);
-    }
-    console.log(sum);
+    const newArray = [];
+
+    cartArray.forEach((item, index) => {
+      
+      sum = cartArray[index].price;
+      newArray.push(sum);
+      const total = newArray.reduce((a, b) => {
+        return a + b;
+      });
+      console.log(newArray);
+      console.log(total);
+      setSum(total);
+    });
   };
 
   return (
