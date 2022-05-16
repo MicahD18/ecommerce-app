@@ -17,15 +17,15 @@ const ViewProduct = ({ addToCart, addTotal, cartCallback }) => {
   const location = useLocation();
   const { from } = location.state;
 
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(1);
 
   const { media, card, button, counterComponent, counterButton, counterValue } =
     useStyles();
 
   const handleDecrement = () => {
     setCounter(counter - 1);
-    if (counter == 0) {
-      setCounter(0);
+    if (counter === 1) {
+      setCounter(1);
     }
   };
 
@@ -52,7 +52,7 @@ const ViewProduct = ({ addToCart, addTotal, cartCallback }) => {
         <button className={button} onClick={() => {
           addToCart(from.name, from.price);
           addTotal(counter);
-          cartCallback(from.name, from.price, counter);
+          cartCallback(from.name, from.price);
         }}>
           <ShoppingCart /> Add to Cart
         </button>

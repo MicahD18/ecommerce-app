@@ -11,16 +11,19 @@ import {
 
 import { Link } from "react-router-dom";
 
-const CartPage = ({ name, price, cartArray }) => {
+const CartPage = ({ name, price, cartArray, addValue, sum }) => {
   console.log(price);
 
+  console.log(sum);
+
   let allItems = cartArray.map((item) => {
-    console.log(item.toString());
+    console.log(item);
 
     return (
       <div>
         <Card className={card}>
-          <p>{item}</p>
+          <p>{item.name}</p>
+          <p>{item.price}</p>
         </Card>
       </div>
     );
@@ -45,6 +48,8 @@ const CartPage = ({ name, price, cartArray }) => {
     <div>
       <h1>Your Cart</h1>
       {allItems}
+      <h3>Total amount: ${sum}</h3>
+      <p>Item amount: ({addValue})</p>
     </div>
   );
 };

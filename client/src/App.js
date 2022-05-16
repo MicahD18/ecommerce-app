@@ -15,6 +15,7 @@ const App = () => {
   const [price, setPrice] = useState(undefined);
   const [cartArray, setCartArray] = useState([]);
   const [clickCount, setClickCount] = useState(0);
+  let [sum, setSum] = useState("");
 
   const handleData = (name, price) => {
     setAdd(add + 1);
@@ -24,19 +25,31 @@ const App = () => {
   };
 
   const handleCounter = (counter) => {
-    setAdd(add + counter);
+    setAdd(counter);
   };
 
-  const cartCallback = (name, price, count) => {
-    count = name;
-    cartArray.push(count, `$${price}`);
-    console.log(name);
-    setCartArray(cartArray);
+  const cartCallback = (name, price) => {
+    // if (add > 0) {
+    //   return;
+    // }
+    // cartArray.forEach((item, index) => {
+    //   console.log(item);
+    //   console.log(index);
+    //   if (name !== cartArray[0].name) {
+    //     console.log("add item to cart");
+    //   }
+    // });
+
+    cartArray.push({ name: name, price: `${price}` });
     setClickCount(clickCount + 1);
     console.log(cartArray);
-  };
 
-  // add empty array
+    for (let i = 0; i < cartArray.length; i++) {
+      console.log(cartArray[i].price);
+      setSum(sum += cartArray[i].price);
+    }
+    console.log(sum);
+  };
 
   return (
     <BrowserRouter>
@@ -63,7 +76,13 @@ const App = () => {
             path="/cart"
             // pass empty array
             element={
-              <CartPage name={name} price={price} cartArray={cartArray} />
+              <CartPage
+                name={name}
+                price={price}
+                cartArray={cartArray}
+                addValue={add}
+                sum={sum}
+              />
             }
           />
         </Routes>
