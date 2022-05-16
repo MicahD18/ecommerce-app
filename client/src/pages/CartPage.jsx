@@ -23,7 +23,7 @@ const CartPage = ({ name, price, cartArray, addValue, sum }) => {
       <div>
         <Card className={card}>
           <p>{item.name}</p>
-          <p>{item.price}</p>
+          <p>${item.price}</p>
         </Card>
       </div>
     );

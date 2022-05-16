@@ -11,11 +11,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [add, setAdd] = useState(0);
+  const [add2, setAdd2] = useState(0);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(undefined);
   const [cartArray, setCartArray] = useState([]);
   const [clickCount, setClickCount] = useState(0);
   let [sum, setSum] = useState("");
+
+  let count;
 
   const handleData = (name, price) => {
     setAdd(add + 1);
@@ -25,22 +28,14 @@ const App = () => {
   };
 
   const handleCounter = (counter) => {
-    setAdd(counter);
+    count = counter;
+    setAdd2(count);
+    console.log(count);
   };
 
+  // For Products
   const cartCallback = (name, price) => {
-    // if (add > 0) {
-    //   return;
-    // }
-    // cartArray.forEach((item, index) => {
-    //   console.log(item);
-    //   console.log(index);
-    //   if (name !== cartArray[0].name) {
-    //     console.log("add item to cart");
-    //   }
-    // });
-
-    cartArray.push({ name: name, price: `${price}` });
+    cartArray.push({ name: name, price: price });
     setClickCount(clickCount + 1);
     console.log(cartArray);
 
@@ -59,6 +54,27 @@ const App = () => {
     });
   };
 
+  // For ViewProduct
+  const cartCallback2 = (name, price) => {
+    cartArray.push({ name: name, price: price });
+    setClickCount(clickCount + 1);
+    console.log(cartArray);
+
+    const newArray = [];
+
+    cartArray.forEach((item, index) => {
+      
+      sum = cartArray[index].price;
+      newArray.push(sum);
+      const total = newArray.reduce((a, b) => {
+        return a + b;
+      });
+      console.log(newArray);
+      console.log(total);
+      setSum(total);
+    });
+  }
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -76,7 +92,7 @@ const App = () => {
               <ViewProductPage
                 addTotal={handleCounter}
                 addToCart={handleData}
-                cartCallback={cartCallback}
+                cartCallback2={cartCallback2}
               />
             }
           />
