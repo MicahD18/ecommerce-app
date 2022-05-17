@@ -17,7 +17,6 @@ const CartPage = ({ name, price, cartArray, addValue, sum }) => {
   console.log(sum);
 
   let allItems = cartArray.map((item) => {
-    console.log(item);
 
     return (
       <div>

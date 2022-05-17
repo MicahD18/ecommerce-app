@@ -11,7 +11,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [add, setAdd] = useState(0);
-  const [add2, setAdd2] = useState(0);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(undefined);
   const [cartArray, setCartArray] = useState([]);
@@ -29,51 +28,26 @@ const App = () => {
 
   const handleCounter = (counter) => {
     count = counter;
-    setAdd2(count);
+    setAdd(count);
     console.log(count);
   };
 
-  // For Products
+  // callback is called on "Add to Cart" button 
+  // on both Products and ProductView page
   const cartCallback = (name, price) => {
     cartArray.push({ name: name, price: price });
     setClickCount(clickCount + 1);
+    setCartArray(cartArray);
     console.log(cartArray);
 
-    const newArray = [];
+    // check if count > 1
 
-    cartArray.forEach((item, index) => {
-      
-      sum = cartArray[index].price;
-      newArray.push(sum);
-      const total = newArray.reduce((a, b) => {
-        return a + b;
-      });
-      console.log(newArray);
-      console.log(total);
-      setSum(total);
-    });
+    const total = cartArray.reduce((currentTotal, item) => {
+      return item.price + currentTotal
+    }, 0)
+    console.log(total);
+    setSum(total);
   };
-
-  // For ViewProduct
-  const cartCallback2 = (name, price) => {
-    cartArray.push({ name: name, price: price });
-    setClickCount(clickCount + 1);
-    console.log(cartArray);
-
-    const newArray = [];
-
-    cartArray.forEach((item, index) => {
-      
-      sum = cartArray[index].price;
-      newArray.push(sum);
-      const total = newArray.reduce((a, b) => {
-        return a + b;
-      });
-      console.log(newArray);
-      console.log(total);
-      setSum(total);
-    });
-  }
 
   return (
     <BrowserRouter>
@@ -92,7 +66,7 @@ const App = () => {
               <ViewProductPage
                 addTotal={handleCounter}
                 addToCart={handleData}
-                cartCallback2={cartCallback2}
+                cartCallback={cartCallback}
               />
             }
           />
