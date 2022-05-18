@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   makeStyles,
@@ -9,26 +9,46 @@ import {
   Button,
 } from "@material-ui/core";
 
+import "./CartPage.css";
+
 import { Link } from "react-router-dom";
 
 const CartPage = ({ name, price, cartArray, addValue, sum }) => {
-  console.log(price);
 
-  console.log(sum);
+  const [counter, setCounter] = useState(1);
+
+  const { button, counterValue } = useStyles();
+
+  const handleDecrement = () => {
+    setCounter(counter - 1);
+    if (counter === 1) {
+      setCounter(1);
+    }
+  };
+
+  const handleIncrement = () => {
+    setCounter(counter + 1);
+  };
 
   let allItems = cartArray.map((item) => {
-
     return (
       <div>
-        <Card className={card}>
+        <Card className="card">
           <p>{item.name}</p>
           <p>${item.price}</p>
+          <div className="counterComponent">
+          <button className="counterButton" onClick={handleDecrement}>
+            -
+          </button>
+          <p className={counterValue}>{counter}</p>
+          <button className="counterButton" onClick={handleIncrement}>
+            +
+          </button>
+        </div>
         </Card>
       </div>
     );
   });
-
-  const { card } = useStyles();
 
   {
     if (name === "" && price === undefined) {
@@ -48,26 +68,40 @@ const CartPage = ({ name, price, cartArray, addValue, sum }) => {
       <h1>Your Cart</h1>
       {allItems}
       <h3>Total amount: ${sum}</h3>
-      <p>Item amount: ({addValue})</p>
+      <p>Items: ({addValue})</p>
+      <button className={button} onClick={() => {
+        }}>
+          Checkout
+      </button>
     </div>
   );
 };
 
 const useStyles = makeStyles(() => ({
-  card: {
-    marginTop: "25px",
-    marginLeft: "25px",
-    marginRight: "25px",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingLeft: "15px",
-    paddingRight: "15px",
-  },
   media: {
-    width: "100%",
+    width: "75%",
     height: "50vh",
     paddingTop: "25%",
+  },
+  button: {
+    backgroundColor: "#E0E0E0",
+    color: "#404040",
+    textDecoration: "none",
+    transition: "0.5s",
+    borderStyle: "none",
+    fontSize: "18px",
+    padding: "15px",
+    borderRadius: "15px",
+    width: "75%",
+    "&:hover": {
+      backgroundColor: "#EB565A",
+      color: "white",
+      cursor: "pointer",
+    },
+  },
+  counterValue: {
+    marginTop: "5px",
+    fontSize: "20px",
   },
 }));
 

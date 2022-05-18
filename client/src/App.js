@@ -16,8 +16,7 @@ const App = () => {
   const [cartArray, setCartArray] = useState([]);
   const [clickCount, setClickCount] = useState(0);
   let [sum, setSum] = useState("");
-
-  let count;
+  let [count, setCount] = useState(1);
 
   const handleData = (name, price) => {
     setAdd(add + 1);
@@ -28,11 +27,11 @@ const App = () => {
 
   const handleCounter = (counter) => {
     count = counter;
-    setAdd(count);
+    setCount(count);
     console.log(count);
   };
 
-  // callback is called on "Add to Cart" button 
+  // callback is called on "Add to Cart" button
   // on both Products and ProductView page
   const cartCallback = (name, price) => {
     cartArray.push({ name: name, price: price });
@@ -40,11 +39,9 @@ const App = () => {
     setCartArray(cartArray);
     console.log(cartArray);
 
-    // check if count > 1
-
     const total = cartArray.reduce((currentTotal, item) => {
-      return item.price + currentTotal
-    }, 0)
+      return item.price + currentTotal;
+    }, 0);
     console.log(total);
     setSum(total);
   };
@@ -80,6 +77,7 @@ const App = () => {
                 cartArray={cartArray}
                 addValue={add}
                 sum={sum}
+                count={count}
               />
             }
           />

@@ -39,7 +39,7 @@ const Product = ({ data, addToCart, cartCallback }) => {
               from: {
                 image: `${data.image}`,
                 name: `${data.name}`,
-                price: `${data.price}`,
+                price: data.price,
                 about: `${data.about}`
               },
             }}

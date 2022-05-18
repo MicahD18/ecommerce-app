@@ -17,21 +17,8 @@ const ViewProduct = ({ addToCart, addTotal, cartCallback }) => {
   const location = useLocation();
   const { from } = location.state;
 
-  const [counter, setCounter] = useState(1);
-
   const { media, card, button, counterComponent, counterButton, counterValue } =
     useStyles();
-
-  const handleDecrement = () => {
-    setCounter(counter - 1);
-    if (counter === 1) {
-      setCounter(1);
-    }
-  };
-
-  const handleIncrement = () => {
-    setCounter(counter + 1);
-  };
 
   return (
     <div>
@@ -40,18 +27,8 @@ const ViewProduct = ({ addToCart, addTotal, cartCallback }) => {
         <h1>{from.name}</h1>
         <p>{from.about}</p>
         <h2>${from.price}</h2>
-        <div className={counterComponent}>
-          <button className={counterButton} onClick={handleDecrement}>
-            -
-          </button>
-          <p className={counterValue}>{counter}</p>
-          <button className={counterButton} onClick={handleIncrement}>
-            +
-          </button>
-        </div>
         <button className={button} onClick={() => {
           addToCart(from.name, from.price);
-          addTotal(counter);
           cartCallback(from.name, from.price);
         }}>
           <ShoppingCart /> Add to Cart
@@ -90,24 +67,6 @@ const useStyles = makeStyles(() => ({
       color: "white",
       cursor: "pointer",
     },
-  },
-  counterComponent: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    backgroundColor: "#E0E0E0",
-    marginBottom: "25px",
-    width: "100%",
-    height: "40px",
-  },
-  counterButton: {
-    paddingLeft: "15px",
-    paddingRight: "15px",
-    fontSize: "24px",
-  },
-  counterValue: {
-    marginTop: "5px",
-    fontSize: "20px",
   },
 }));
 
