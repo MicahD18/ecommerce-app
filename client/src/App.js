@@ -77,7 +77,7 @@ const App = () => {
                 cartArray={cartArray}
                 addValue={add}
                 sum={sum}
-                count={count}
+                setSum={setSum}
               />
             }
           />

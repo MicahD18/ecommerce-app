@@ -13,38 +13,59 @@ import "./CartPage.css";
 
 import { Link } from "react-router-dom";
 
-const CartPage = ({ name, price, cartArray, addValue, sum }) => {
-
+const CartPage = ({ name, price, cartArray, addValue, sum, setSum }) => {
   const [counter, setCounter] = useState(1);
+  const [countArray, setCountArray] = useState([]);
 
   const { button, counterValue } = useStyles();
 
-  const handleDecrement = () => {
-    setCounter(counter - 1);
-    if (counter === 1) {
-      setCounter(1);
-    }
-  };
-
-  const handleIncrement = () => {
-    setCounter(counter + 1);
-  };
-
   let allItems = cartArray.map((item) => {
+
+    const handleDecrement = () => {
+      setCounter(counter - 1);
+      if (counter === 1) {
+        setCounter(1);
+      }
+
+      countArray.pop({ price: price });
+      setCountArray(countArray);
+      console.log(countArray);
+
+      const total = countArray.reduce((currentTotal, item) => {
+        return item.price + currentTotal;
+      }, price);
+      console.log(total);
+      setSum(total);
+    };
+
+    const handleIncrement = () => {
+      setCounter(counter + 1);
+
+      countArray.push({ price: price });
+      setCountArray(countArray);
+      console.log(countArray);
+
+      const total = countArray.reduce((currentTotal, item) => {
+        return item.price + currentTotal;
+      }, price);
+      console.log(total);
+      setSum(total);
+    };
+
     return (
       <div>
         <Card className="card">
           <p>{item.name}</p>
           <p>${item.price}</p>
           <div className="counterComponent">
-          <button className="counterButton" onClick={handleDecrement}>
-            -
-          </button>
-          <p className={counterValue}>{counter}</p>
-          <button className="counterButton" onClick={handleIncrement}>
-            +
-          </button>
-        </div>
+            <button className="counterButton" onClick={handleDecrement}>
+              -
+            </button>
+            <p className={counterValue}>{counter}</p>
+            <button className="counterButton" onClick={handleIncrement}>
+              +
+            </button>
+          </div>
         </Card>
       </div>
     );
@@ -69,9 +90,8 @@ const CartPage = ({ name, price, cartArray, addValue, sum }) => {
       {allItems}
       <h3>Total amount: ${sum}</h3>
       <p>Items: ({addValue})</p>
-      <button className={button} onClick={() => {
-        }}>
-          Checkout
+      <button className={button} onClick={() => {}}>
+        Checkout
       </button>
     </div>
   );
