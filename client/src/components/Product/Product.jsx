@@ -14,7 +14,7 @@ import {
 import "./Product.css";
 
 const Product = ({ data, addToCart, cartCallback }) => {
-  const { card, media, productInfo, buttons, button } = useStyles();
+  const { card, media, productInfo, buttons, button1, button2 } = useStyles();
 
   return (
     <div>
@@ -40,23 +40,28 @@ const Product = ({ data, addToCart, cartCallback }) => {
                 image: `${data.image}`,
                 name: `${data.name}`,
                 price: data.price,
-                about: `${data.about}`
+                about: `${data.about}`,
               },
             }}
-            className={button}
+            className={button1}
           >
-            View Product
+            <Button
+              className={button2}
+            >
+              View Product
+            </Button>
           </Link>
-          <button
-            className={button}
+          <Button
+            className={button2}
             id="add"
+            variant="contained"
             onClick={() => {
               addToCart(data.name, data.price);
               cartCallback(data.name, data.price);
             }}
           >
             Add to Cart
-          </button>
+          </Button>
         </div>
       </Card>
     </div>
@@ -66,7 +71,7 @@ const Product = ({ data, addToCart, cartCallback }) => {
 const useStyles = makeStyles(() => ({
   card: {
     marginTop: "25px",
-    paddingBottom: "25px"
+    paddingBottom: "25px",
   },
   media: {
     height: 0,
@@ -84,15 +89,19 @@ const useStyles = makeStyles(() => ({
     justifyContent: "center",
     gap: "15px",
   },
-  button: {
+  button1: {
+    textDecoration: "none",
+  },
+  button2: {
     backgroundColor: "#E0E0E0",
     color: "#404040",
     textDecoration: "none",
     transition: "0.5s",
     borderStyle: "none",
-    fontSize: "18px",
+    fontSize: "16px",
     padding: "15px",
     borderRadius: "15px",
+    height: "50px",
     "&:hover": {
       backgroundColor: "#EB565A",
       color: "white",

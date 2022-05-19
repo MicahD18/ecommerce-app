@@ -17,9 +17,13 @@ const App = () => {
   const [clickCount, setClickCount] = useState(0);
   let [sum, setSum] = useState("");
   let [count, setCount] = useState(1);
+  const [clicked, setClicked] = useState([]);
 
   const handleData = (name, price) => {
     setAdd(add + 1);
+    if (clicked.includes(name)) {
+      setAdd(add);
+    }
     console.log(add);
     setName(name);
     setPrice(price);
@@ -34,16 +38,23 @@ const App = () => {
   // callback is called on "Add to Cart" button
   // on both Products and ProductView page
   const cartCallback = (name, price) => {
-    cartArray.push({ name: name, price: price });
-    setClickCount(clickCount + 1);
-    setCartArray(cartArray);
-    console.log(cartArray);
+    if (!clicked.includes(name)) {
+      setClicked([...clicked, name]);
+      cartArray.push({ name: name, price: price });
+      setClickCount(clickCount + 1);
+      setCartArray(cartArray);
+      console.log(cartArray);
 
-    const total = cartArray.reduce((currentTotal, item) => {
-      return item.price + currentTotal;
-    }, 0);
-    console.log(total);
-    setSum(total);
+      const total = cartArray.reduce((currentTotal, item) => {
+        return item.price + currentTotal;
+      }, 0);
+      console.log(total);
+      setSum(total);
+    } else {
+      console.log("Repeated item clicked!");
+    }
+
+    console.log(cartArray);
   };
 
   return (

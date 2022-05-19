@@ -17,7 +17,7 @@ const ViewProduct = ({ addToCart, addTotal, cartCallback }) => {
   const location = useLocation();
   const { from } = location.state;
 
-  const { media, card, button, counterComponent, counterButton, counterValue } =
+  const { media, card, button } =
     useStyles();
 
   return (
@@ -27,12 +27,13 @@ const ViewProduct = ({ addToCart, addTotal, cartCallback }) => {
         <h1>{from.name}</h1>
         <p>{from.about}</p>
         <h2>${from.price}</h2>
-        <button className={button} onClick={() => {
+        <Button className={button} onClick={() => {
           addToCart(from.name, from.price);
           cartCallback(from.name, from.price);
-        }}>
+        }}
+        >
           <ShoppingCart /> Add to Cart
-        </button>
+        </Button>
       </Card>
     </div>
   );
