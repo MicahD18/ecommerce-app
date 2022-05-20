@@ -13,7 +13,7 @@ import { ShoppingCart } from "@material-ui/icons";
 
 import { useLocation } from "react-router-dom";
 
-const ViewProduct = ({ addToCart, addTotal, cartCallback }) => {
+const ViewProduct = ({ addToCart, cartCallback }) => {
   const location = useLocation();
   const { from } = location.state;
 

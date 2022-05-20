@@ -10,7 +10,7 @@ const ViewProductPage = ({addToCart, addTotal, cartCallback}) => {
     <Container>
       <Grid container justifyContent="center" spacing={4}>
         <Grid item xs={12} sm={10} md={6} lg={7}>
-          <ViewProduct addToCart={addToCart} addTotal={addTotal} cartCallback={cartCallback} />
+          <ViewProduct addToCart={addToCart} cartCallback={cartCallback} />
         </Grid>
       </Grid>
     </Container>

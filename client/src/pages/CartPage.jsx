@@ -20,14 +20,13 @@ const CartPage = ({ name, price, cartArray, addValue, sum, setSum }) => {
   const { button, counterValue } = useStyles();
 
   let allItems = cartArray.map((item) => {
-
     const handleDecrement = () => {
       setCounter(counter - 1);
       if (counter === 1) {
         setCounter(1);
       }
 
-      countArray.pop({ price: price });
+      countArray.pop({ name: name, price: price });
       setCountArray(countArray);
       console.log(countArray);
 
@@ -41,7 +40,7 @@ const CartPage = ({ name, price, cartArray, addValue, sum, setSum }) => {
     const handleIncrement = () => {
       setCounter(counter + 1);
 
-      countArray.push({ price: price });
+      countArray.push({ name: name, price: price });
       setCountArray(countArray);
       console.log(countArray);
 
@@ -57,15 +56,25 @@ const CartPage = ({ name, price, cartArray, addValue, sum, setSum }) => {
         <Card className="card">
           <p>{item.name}</p>
           <p>${item.price}</p>
-          <div className="counterComponent">
-            <button className="counterButton" onClick={handleDecrement}>
+          {/* <div className="counterComponent">
+            <button
+              className="counterButton"
+              onClick={() => {
+                handleDecrement();
+              }}
+            >
               -
             </button>
             <p className={counterValue}>{counter}</p>
-            <button className="counterButton" onClick={handleIncrement}>
+            <button
+              className="counterButton"
+              onClick={() => {
+                handleIncrement();
+              }}
+            >
               +
             </button>
-          </div>
+          </div> */}
         </Card>
       </div>
     );
@@ -91,7 +100,7 @@ const CartPage = ({ name, price, cartArray, addValue, sum, setSum }) => {
       <h3>Total amount: ${sum}</h3>
       <p>Items: ({addValue})</p>
       <button className={button} onClick={() => {}}>
-        Checkout
+        Proceed to Checkout
       </button>
     </div>
   );

@@ -16,7 +16,7 @@ const App = () => {
   const [cartArray, setCartArray] = useState([]);
   const [clickCount, setClickCount] = useState(0);
   let [sum, setSum] = useState("");
-  let [count, setCount] = useState(1);
+  // checks if name is included in the array
   const [clicked, setClicked] = useState([]);
 
   const handleData = (name, price) => {
@@ -27,12 +27,6 @@ const App = () => {
     console.log(add);
     setName(name);
     setPrice(price);
-  };
-
-  const handleCounter = (counter) => {
-    count = counter;
-    setCount(count);
-    console.log(count);
   };
 
   // callback is called on "Add to Cart" button
@@ -52,6 +46,7 @@ const App = () => {
       setSum(total);
     } else {
       console.log("Repeated item clicked!");
+      alert("Item is already in your cart");
     }
 
     console.log(cartArray);
@@ -72,7 +67,6 @@ const App = () => {
             path="/viewProduct"
             element={
               <ViewProductPage
-                addTotal={handleCounter}
                 addToCart={handleData}
                 cartCallback={cartCallback}
               />

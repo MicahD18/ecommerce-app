@@ -6,7 +6,7 @@ import { products } from "../components/Product/productData";
 
 import { Container, makeStyles, Grid } from "@material-ui/core";
 
-const Products = ({addToCart, cartCallback, addValue}) => {
+const Products = ({ addToCart, cartCallback }) => {
   const { header } = useStyles();
 
   return (
