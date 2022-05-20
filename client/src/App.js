@@ -19,22 +19,22 @@ const App = () => {
   // checks if name is included in the array
   const [clicked, setClicked] = useState([]);
 
-  const handleData = (name, price) => {
+  const handleData = (name, price, image) => {
     setAdd(add + 1);
     if (clicked.includes(name)) {
       setAdd(add);
     }
-    console.log(add);
+    console.log(image);
     setName(name);
     setPrice(price);
   };
 
   // callback is called on "Add to Cart" button
   // on both Products and ProductView page
-  const cartCallback = (name, price) => {
+  const cartCallback = (name, price, image) => {
     if (!clicked.includes(name)) {
       setClicked([...clicked, name]);
-      cartArray.push({ name: name, price: price });
+      cartArray.push({ name: name, price: price, image: image });
       setClickCount(clickCount + 1);
       setCartArray(cartArray);
       console.log(cartArray);

@@ -56,8 +56,9 @@ const Product = ({ data, addToCart, cartCallback }) => {
             id="add"
             variant="contained"
             onClick={() => {
-              addToCart(data.name, data.price);
-              cartCallback(data.name, data.price);
+              console.log(data.image);
+              addToCart(data.name, data.price, data.image);
+              cartCallback(data.name, data.price, data.image);
             }}
           >
             Add to Cart
