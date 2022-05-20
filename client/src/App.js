@@ -8,6 +8,7 @@ import ViewProductPage from "./pages/ViewProductPage";
 import CartPage from "./pages/CartPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const App = () => {
   const [add, setAdd] = useState(0);
@@ -17,37 +18,37 @@ const App = () => {
   const [clickCount, setClickCount] = useState(0);
   let [sum, setSum] = useState("");
   // checks if name is included in the array
-  const [clicked, setClicked] = useState([]);
+  // const [clicked, setClicked] = useState([]);
 
   const handleData = (name, price, image) => {
     setAdd(add + 1);
-    if (clicked.includes(name)) {
-      setAdd(add);
-    }
+    // if (clicked.includes(name)) {
+    //   setAdd(add);
+    // }
     console.log(image);
     setName(name);
     setPrice(price);
   };
 
+  const removeAllItems = () => {
+    cartArray.splice(0, cartArray.length);
+    console.log(cartArray);
+    setCartArray(cartArray);
+  };
+
   // callback is called on "Add to Cart" button
   // on both Products and ProductView page
   const cartCallback = (name, price, image) => {
-    if (!clicked.includes(name)) {
-      setClicked([...clicked, name]);
-      cartArray.push({ name: name, price: price, image: image });
-      setClickCount(clickCount + 1);
-      setCartArray(cartArray);
-      console.log(cartArray);
+    cartArray.push({ name: name, price: price, image: image });
+    setClickCount(clickCount + 1);
+    setCartArray(cartArray);
+    console.log(cartArray);
 
-      const total = cartArray.reduce((currentTotal, item) => {
-        return item.price + currentTotal;
-      }, 0);
-      console.log(total);
-      setSum(total);
-    } else {
-      console.log("Repeated item clicked!");
-      alert("Item is already in your cart");
-    }
+    const total = cartArray.reduce((currentTotal, item) => {
+      return item.price + currentTotal;
+    }, 0);
+    console.log(total);
+    setSum(total);
 
     console.log(cartArray);
   };
@@ -80,12 +81,16 @@ const App = () => {
                 name={name}
                 price={price}
                 cartArray={cartArray}
+                setCartArray={setCartArray}
                 addValue={add}
+                setAddValue={setAdd}
                 sum={sum}
                 setSum={setSum}
+                removeAll={removeAllItems}
               />
             }
           />
+          <Route path="/checkout" element={<CheckoutPage />} />
         </Routes>
       </div>
     </BrowserRouter>

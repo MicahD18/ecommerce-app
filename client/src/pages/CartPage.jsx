@@ -13,13 +13,28 @@ import "./CartPage.css";
 
 import { Link } from "react-router-dom";
 
-const CartPage = ({ name, price, image, cartArray, addValue, sum, setSum }) => {
-  const [counter, setCounter] = useState(1);
-  const [countArray, setCountArray] = useState([]);
+const CartPage = ({ name, price, cartArray, setCartArray, addValue, sum, setAddValue }) => {
+  // const [counter, setCounter] = useState(1);
+  // const [countArray, setCountArray] = useState([]);
+  const [removeAll, setRemoveAll] = useState(false);
 
-  const { button, counterValue } = useStyles();
+  const { button } = useStyles();
+
+  
 
   let allItems = cartArray.map((item) => {
+
+    const removeItem = (product) => {
+      console.log(product);
+      console.log(item.name);
+      if (product === item.name) {
+        console.log("remove item");
+        cartArray.pop(product);
+        console.log(cartArray);
+        setCartArray(cartArray);
+      }
+    };
+
     // const handleDecrement = () => {
     //   setCounter(counter - 1);
     //   if (counter === 1) {
@@ -76,16 +91,20 @@ const CartPage = ({ name, price, image, cartArray, addValue, sum, setSum }) => {
               +
             </button>
           </div> */}
-          <Button>
+          {/* <Button
+            onClick={() => {
+              removeItem(item.name);
+            }}
+          >
             Remove Item
-          </Button>
+          </Button> */}
         </Card>
       </div>
     );
   });
 
   {
-    if (name === "" && price === undefined) {
+    if (name === "" && price === undefined || removeAll === true) {
       return (
         <div>
           <h1>Your Cart</h1>
@@ -100,12 +119,21 @@ const CartPage = ({ name, price, image, cartArray, addValue, sum, setSum }) => {
   return (
     <div>
       <h1>Your Cart</h1>
+      <Button onClick={() => {
+        setRemoveAll(true);
+        setCartArray([]);
+        setAddValue(0);
+      }}>
+        Remove all
+      </Button>
       {allItems}
       <h3>Total amount: ${sum}</h3>
       <p>Items: ({addValue})</p>
-      <button className={button} onClick={() => {}}>
-        Proceed to Checkout
-      </button>
+      <Link to="/checkout">
+        <button className={button} onClick={() => {}}>
+          Proceed to Checkout
+        </button>
+      </Link>
     </div>
   );
 };
