@@ -24,16 +24,16 @@ const CartPage = ({ name, price, cartArray, setCartArray, addValue, sum, setAddV
 
   let allItems = cartArray.map((item) => {
 
-    const removeItem = (product) => {
-      console.log(product);
-      console.log(item.name);
-      if (product === item.name) {
-        console.log("remove item");
-        cartArray.pop(product);
-        console.log(cartArray);
-        setCartArray(cartArray);
-      }
-    };
+    // const removeItem = (product) => {
+    //   console.log(product);
+    //   console.log(item.name);
+    //   if (product === item.name) {
+    //     console.log("remove item");
+    //     cartArray.pop(product);
+    //     console.log(cartArray);
+    //     setCartArray(cartArray);
+    //   }
+    // };
 
     // const handleDecrement = () => {
     //   setCounter(counter - 1);
@@ -104,7 +104,7 @@ const CartPage = ({ name, price, cartArray, setCartArray, addValue, sum, setAddV
   });
 
   {
-    if (name === "" && price === undefined || removeAll === true) {
+    if (name === "" && price === undefined || removeAll === true && addValue == 0) {
       return (
         <div>
           <h1>Your Cart</h1>

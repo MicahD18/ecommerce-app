@@ -9,6 +9,7 @@ import CartPage from "./pages/CartPage";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CheckoutPage from "./pages/CheckoutPage";
+import ThankPage from "./pages/ThankPage";
 
 const App = () => {
   const [add, setAdd] = useState(0);
@@ -90,7 +91,8 @@ const App = () => {
               />
             }
           />
-          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/checkout" element={<CheckoutPage total={sum} setTotal={setSum} setAddValue={setAdd} removeAll={removeAllItems} />} />
+          <Route path="/thank" element={<ThankPage />} />
         </Routes>
       </div>
     </BrowserRouter>
