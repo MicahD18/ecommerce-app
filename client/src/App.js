@@ -33,8 +33,8 @@ const App = () => {
 
   const removeAllItems = () => {
     cartArray.splice(0, cartArray.length);
-    console.log(cartArray);
     setCartArray(cartArray);
+    console.log(cartArray);
   };
 
   // callback is called on "Add to Cart" button

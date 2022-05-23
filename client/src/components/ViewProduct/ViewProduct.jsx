@@ -29,7 +29,7 @@ const ViewProduct = ({ addToCart, cartCallback }) => {
         <h2>${from.price}</h2>
         <Button className={button} onClick={() => {
           addToCart(from.name, from.price);
-          cartCallback(from.name, from.price);
+          cartCallback(from.name, from.price, from.image);
         }}
         >
           <ShoppingCart /> Add to Cart

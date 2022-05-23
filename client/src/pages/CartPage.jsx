@@ -104,7 +104,7 @@ const CartPage = ({ name, price, cartArray, setCartArray, addValue, sum, setAddV
   });
 
   {
-    if (name === "" && price === undefined || removeAll === true && addValue == 0) {
+    if (cartArray.length === 0) {
       return (
         <div>
           <h1>Your Cart</h1>
