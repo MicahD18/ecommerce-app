@@ -14,15 +14,16 @@ import {
 import "./Product.css";
 
 const Product = ({ data, addToCart, cartCallback }) => {
-  const { card, media, productInfo, buttons, button1, button2 } = useStyles();
+  const { main, card, media, productInfo, buttons, button1, button2 } = useStyles();
 
   return (
-    <div>
+    <div className={main}>
+      <div></div>
       <Card className={card}>
-        <CardMedia className={media} image={data.image} title={data.name} />
+        <CardMedia className={media} image={data.image} title={data.title} />
         <CardContent>
           <div className={productInfo}>
-            <Typography variant="h6">{data.name}</Typography>
+            <Typography variant="h6">{data.title}</Typography>
             <Typography variant="h6">${data.price}</Typography>
           </div>
 
@@ -38,9 +39,9 @@ const Product = ({ data, addToCart, cartCallback }) => {
             state={{
               from: {
                 image: `${data.image}`,
-                name: `${data.name}`,
+                name: `${data.title}`,
                 price: data.price,
-                about: `${data.about}`,
+                about: `${data.description}`,
               },
             }}
             className={button1}
@@ -57,22 +58,29 @@ const Product = ({ data, addToCart, cartCallback }) => {
             variant="contained"
             onClick={() => {
               console.log(data.image);
-              addToCart(data.name, data.price, data.image);
-              cartCallback(data.name, data.price, data.image);
+              addToCart(data.title, data.price, data.image);
+              cartCallback(data.title, data.price, data.image);
             }}
           >
             Add to Cart
           </Button>
         </div>
       </Card>
+      <div></div>
     </div>
   );
 };
 
 const useStyles = makeStyles(() => ({
+  main: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center"
+  },
   card: {
     marginTop: "25px",
     paddingBottom: "25px",
+    width: "300px"
   },
   media: {
     height: 0,

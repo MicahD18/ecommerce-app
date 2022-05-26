@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 
 import { ShoppingCart } from "@material-ui/icons";
-import logo from "../../assets/headphones-icon.png";
 
 import "./Navbar.css";
 
@@ -22,8 +21,8 @@ const Navbar = ({itemAmount}) => {
     <Container className={container}>
       <Link to="/" className="header">
         <div className={logoHeader}>
-          <img src={logo} height="40px" />
-          <h1 className="title">Audio Center</h1>
+          <img src={"https://cdn-icons-png.flaticon.com/512/825/825561.png"} height="40px" />
+          <h1 className="title">Shopping Center</h1>
         </div>
       </Link>
 
