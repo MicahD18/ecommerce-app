@@ -1,1 +1,1 @@
-# ecommerce-product-page
+# ecommerce-app
