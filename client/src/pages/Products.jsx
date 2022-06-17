@@ -116,7 +116,7 @@ const Products = ({ addToCart, cartCallback }) => {
             <Tab label="Women's Clothing" onClick={() => {
               filterProductCategory("women's clothing");
             }} />
-            <Tab label="Electronics" onClick={() => {
+            <Tab label="Tech" onClick={() => {
               filterProductCategory("electronics");
             }}/>
             <Tab label="Jewelery" onClick={() => {
